@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    script[type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDB06c3JC9Puup5N4gk3cK1j9sQ0kO615U&sensor=false"]
+    style[type="text/css"]
+      |  #mapDiv { width: 1200px; height: 800px; }
+    script[type="text/javascript"]
+      |  var map; function initMap() { google.maps.visualRefresh = true; var mapOptions = { zoom: 1, mapTypeControlOptions: {mapTypeIds: [google.maps.MapTypeId.ROADMAP]} }; var mapElement = document.getElementById('mapDiv'); map = new google.maps.Map(mapElement, mapOptions); map.setMapTypeId(google.maps.MapTypeId.ROADMAP); map.data.loadGeoJson("/gabon.json"); zoomToIstanbul(); } function zoomToIstanbul() { var istanbul = new google.maps.LatLng(41.0579, 29.0340); map.setCenter(istanbul); } function zoomToStreet() { map.setZoom(18); } function disableDrag() { map.setOptions({draggable: false}); } function setMaxZoom() { map.setOptions({maxZoom: 12}); } function setMinZoom() { map.setOptions({minZoom: 5}); } function changeUI() { map.setOptions({disableDefaultUI: true}); } function disableScroll() { map.setOptions({scrollwheel: false}); } function startButtonEvents() { document.getElementById('btnZoomToIst') .addEventListener('click', function(){ zoomToIstanbul(); }); document.getElementById('btnZoomToStr') .addEventListener('click', function() { zoomToStreet(); }); document.getElementById('btnDisableDrag') .addEventListener('click', function(){ disableDrag(); }); document.getElementById('btnMaxZoom') .addEventListener('click', function() { setMaxZoom(); }); document.getElementById('btnMinZoom') .addEventListener('click', function() { setMinZoom(); }); document.getElementById('btnChangeUI') .addEventListener('click', function() { changeUI(); }) document.getElementById('btnDisableScroll') .addEventListener('click', function() { disableScroll(); }); } google.maps.event.addDomListener(window, 'load', initMap); document.addEventListener('DOMContentLoaded', startButtonEvents);
+  body
+    h1
+      | My First Map
+    input#btnZoomToIst[type="button" value="Zoom To Istanbul"]
+    input#btnZoomToStr[type="button" value="Zoom To Street Level"]
+    input#btnDisableDrag[type="button" value="Disable Drag"]
+    input#btnMaxZoom[type="button" value="Set Max Zoom to 12"]
+    input#btnMinZoom[type="button" value="Set Min Zoom to 5"]
+    input#btnChangeUI[type="button" value="Change UI"]
+    input#btnDisableScroll[type="button" value="Disable Scroll Zoom"]
+    #mapDiv
