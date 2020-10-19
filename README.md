@@ -1,4 +1,4 @@
-# Trailblazer on Rails Workshop
+# Trailblazer on Rails Workshop updated to runy 5.2 and addes postgis
 
 App for demonstrating how easy way is moving from rails scaffolds to trailblazer concepts
 
